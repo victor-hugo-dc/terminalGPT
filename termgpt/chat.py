@@ -1,7 +1,8 @@
 import argparse, atexit
 from dataclasses import dataclass
 
-from termgpt.models import AnthropicChat, CLAUDE, OpenAIChat, GPT3, GPT4
+
+from termgpt.models import OpenAIChat, GPT3, GPT4
 
 def parse_args():
     parser = argparse.ArgumentParser(usage="termGPT [options] [file]", description="Chat with GPT-3/4. If no file is provided, you will be prompted to enter a question.")
@@ -16,10 +17,7 @@ exit_commands = ["exit", "quit", "q", "bye", "goodbye", "stop", "end", "finish",
 
 def main(model_name):
     args = parse_args()
-    if model_name == CLAUDE:
-        chat = AnthropicChat(model_name=CLAUDE, file=args.file, resume=args.resume, command=args.command, out_file=args.outfile, markdown=args.no_markdown)
-    else:
-        chat = OpenAIChat(model_name, file=args.file, resume=args.resume, command=args.command, out_file=args.outfile, markdown=args.no_markdown)
+    chat = OpenAIChat(model_name, file=args.file, resume=args.resume, command=args.command, out_file=args.outfile, markdown=args.no_markdown)
     atexit.register(chat.save)
     if not args.command:
         while (q := chat.input()) not in exit_commands:
@@ -27,4 +25,3 @@ def main(model_name):
 
 def gpt3(): main(GPT3)
 def gpt4(): main(GPT4)
-def claude(): main(CLAUDE)

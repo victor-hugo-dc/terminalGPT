@@ -31,5 +31,5 @@ setup(
     ],
     entry_points={"console_scripts": ["gpt3=termgpt.chat:gpt3",
                                       "gpt4=termgpt.chat:gpt4",
-                                      "claude=termgpt.chat:claude",]},
+                                      ]},
 )

@@ -3,3 +3,6 @@ build/
 /**/*.egg-info
 /**/*.whl
 /**/*.gz
+__pycache__
+.env
+chatgpt_history.json

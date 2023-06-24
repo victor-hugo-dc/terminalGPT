@@ -50,7 +50,6 @@ class ChatWithHistory:
         out = self.call()
         self.append("assistant", out)
         total_time = time.perf_counter() - t0
-        self.console.print(self.output_render(out, style="bold green"))
         self.console.print(f"Time taken: {total_time:.2f} seconds")
         return out
 
